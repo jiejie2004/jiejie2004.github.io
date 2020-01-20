@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://surfersnode.ml</id>
+    <title>Personal Notes</title>
+    <updated>2020-01-20T06:43:37.156Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://surfersnode.ml"/>
+    <link rel="self" href="https://surfersnode.ml/atom.xml"/>
+    <subtitle>分享资讯 交流经验</subtitle>
+    <logo>https://surfersnode.ml/images/avatar.png</logo>
+    <icon>https://surfersnode.ml/favicon.ico</icon>
+    <rights>All rights reserved 2020, Personal Notes</rights>
+    <entry>
+        <title type="html"><![CDATA[git 清空所有commit记录方法]]></title>
+        <id>https://surfersnode.ml/post/git-qing-kong-suo-you-commit-ji-lu-fang-fa</id>
+        <link href="https://surfersnode.ml/post/git-qing-kong-suo-you-commit-ji-lu-fang-fa">
+        </link>
+        <updated>2020-01-09T08:42:53.000Z</updated>
+        <content type="html"><![CDATA[<p>说明：例如将代码提交到git仓库，将一些敏感信息提交，所以需要删除提交记录以彻底清除提交信息，以得到一个干净的仓库且代码不变</p>
+<p>1.Checkout<br>
+git checkout –orphan latest_branch</p>
+<ol start="2">
+<li>
+<p>Add all the files<br>
+git add -A</p>
+</li>
+<li>
+<p>Commit the changes<br>
+git commit -am “commit message&quot;</p>
+</li>
+<li>
+<p>Delete the branch<br>
+git branch -D master</p>
+</li>
+</ol>
+<p>5.Rename the current branch to master<br>
+git branch -m master</p>
+<p>6.Finally, force update your repository<br>
+git push -f origin master</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[git撤销与回滚]]></title>
+        <id>https://surfersnode.ml/post/git-che-xiao-yu-hui-gun</id>
+        <link href="https://surfersnode.ml/post/git-che-xiao-yu-hui-gun">
+        </link>
+        <updated>2020-01-09T06:36:21.000Z</updated>
+        <content type="html"><![CDATA[<p>git的撤销与回滚在平时使用中还是比较多的，比如说我们想将某个修改后的文件撤销到上一个版本，或者是想撤销某次多余的提交，都要用到git的撤销和回滚操作。撤销分两种情况，一个是commit之前，一个是commit之后，下面具体看下这两种情况。</p>
+<p>一.git commit之前</p>
+<pre><code>    未添加到暂存区的撤销(没有git add)
+
+    添加进暂存区的撤销(git add后)
+</code></pre>
+<p>复制代码<br>
+$ git status<br>
+On branch test_git<br>
+Changes not staged for commit:     没有添加到暂存区<br>
+(use &quot;git add <file>...&quot; to update what will be committed)<br>
+(use &quot;git checkout -- <file>...&quot; to discard changes in working directory)<br>
+　　　　modified: new_src/app/Http/Controllers/Frontend/KyHome/KyHomeUnitTrait.php<br>
+　　　　modified: new_src/app/Http/Controllers/Frontend/KyHome/KyHomeWordFilterTrait.php</p>
+<p>复制代码<br>
+可以通过</p>
+<p>git checkout -- filename来撤销修改<br>
+git checkout -- new_src/app/Http/Controllers/Frontend/KyHome/KyHomeWordFilterTrait.php<br>
+再次查看文件状态发现选择的文件已经成功被撤销了。</p>
+<p>复制代码<br>
+$ git status<br>
+On branch test_git<br>
+Changes not staged for commit:<br>
+(use &quot;git add <file>...&quot; to update what will be committed)<br>
+(use &quot;git checkout -- <file>...&quot; to discard changes in working directory)<br>
+　　　　modified: new_src/app/Http/Controllers/Frontend/KyHome/KyHomeUnitTrait.php<br>
+　　　　<br>
+复制代码<br>
+如果想将多个文件一次性撤销可以用</p>
+<p>git checkout -- .<br>
+上面是 未添加到暂存区的撤销</p>
+<p>下面是添加到暂存区的</p>
+<p>复制代码<br>
+$ git status<br>
+On branch test_git<br>
+Changes not staged for commit:<br>
+(use &quot;git add <file>...&quot; to update what will be committed)<br>
+(use &quot;git checkout -- <file>...&quot; to discard changes in working directory)</p>
+<pre><code>    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php
+    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php
+</code></pre>
+<p>复制代码<br>
+复制代码<br>
+$ git add -A<br>
+$ git status<br>
+On branch test_git<br>
+Changes to be committed:    已经添加暂存区了<br>
+(use &quot;git reset HEAD <file>...&quot; to unstage)</p>
+<pre><code>    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php
+    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php
+</code></pre>
+<p>复制代码<br>
+从暂存区撤销</p>
+<p>$ git reset HEAD new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php<br>
+Unstaged changes after reset:<br>
+M       new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php<br>
+如果想一次性将所有暂存区文件撤销回来，还是上面的命令，不过不用加文件路径。</p>
+<p>$ git reset HEAD<br>
+Unstaged changes after reset:</p>
+<p>M       new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php<br>
+M       new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php<br>
+二.git commit之后</p>
+<p>如果当commit提交后想撤销的话，这就需要revert命令。git revert 命令是撤销某次操作，而在此次操作之前和之后的提交记录都会保留。</p>
+<p>先修改了几个文件然后commit 再用git log查看提交记录。</p>
+<p>commit 2842c8065322085c31fb7b8207b6296047c4ea3<br>
+Author: songguojun <a href="mailto:songgj@kingnet.sh">songgj@kingnet.sh</a><br>
+Date:   Sat Apr 28 11:21:30 2018 +0800</p>
+<pre><code>add content
+</code></pre>
+<p>然后使用revert  后面跟上git提交的commitid</p>
+<p>git  revert 2842c8065322085c31fb7b8207b6296047c4ea3<br>
+复制代码<br>
+Revert &quot;add content&quot;</p>
+<p>This reverts commit 2842c8065ffe2085c31fb7b8207b6296047c4ea3.</p>
+<h1 id="please-enter-the-commit-message-for-your-changes-lines-starting">Please enter the commit message for your changes. Lines starting</h1>
+<h1 id="with-will-be-ignored-and-an-empty-message-aborts-the-commit">with '#' will be ignored, and an empty message aborts the commit.</h1>
+<h1 id="on-branch-test_git">On branch test_git</h1>
+<h1 id="changes-to-be-committed">Changes to be committed:</h1>
+<h1 id="modified-new_srcapphttpcontrollersfrontendkyhomekyhomeappphp">modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php</h1>
+<h1 id="modified-new_srcapphttpcontrollersfrontendkyhomekyhomecommentphp">modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php</h1>
+<p>复制代码<br>
+然后在推送到远端更新远程仓库代码，修改的文件就撤销回来了。注意的是revert奇数次生效，偶数次又回到之前的修改状态。比如一个文件内容是a，那么修改为ab，revert后文件变成了a，如果在revert后文件又还原成ab了。</p>
+<p>还有就是如果想回到之前某个版本，可以用reset命令，可以回退到某次提交，那该提交之后的提交都会回滚，不过这种覆盖是不可逆的，之前的提交记录都没有了。所以平时开发中尽量注意，避免使用reset。</p>
+<p>用法:</p>
+<p>git  reset --hard  commit_id<br>
+–hard – 强制将缓存区和工作目录都同步到你指定的提交<br>
+git  reset --hard fdeb212a5418cc8e31f32d63cf197550297468ec<br>
+HEAD is now at fdeb212 增加mysql端口配置<br>
+然后在提交到远端覆盖。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ubuntu修改时区和更新时间]]></title>
+        <id>https://surfersnode.ml/post/ubuntu-xiu-gai-shi-qu-he-geng-xin-shi-jian</id>
+        <link href="https://surfersnode.ml/post/ubuntu-xiu-gai-shi-qu-he-geng-xin-shi-jian">
+        </link>
+        <updated>2019-11-25T08:44:45.000Z</updated>
+        <content type="html"><![CDATA[<p>1）先查看当前系统时间</p>
+<p>root@ubuntu:/# date -R<br>
+2）运行tzselect</p>
+<p>选择亚洲 Asia，确认之后选择中国（China)，最后选择北京(Beijing)</p>
+<p>3）复制文件到/etc目录下</p>
+<p>cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</p>
+<p>4）更新时间</p>
+<p>sudo ntpdate time.windows.com</p>
+<p>5）修改时间以后，修改硬件CMOS的时间</p>
+<p>sudo hwclock –systohc</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[欢迎访问surfersnode空间！]]></title>
+        <id>https://surfersnode.ml/post/about</id>
+        <link href="https://surfersnode.ml/post/about">
+        </link>
+        <updated>2019-08-19T08:39:58.000Z</updated>
+        <content type="html"><![CDATA[<p>surfersnode资讯分享博客。</p>
+<p>点击进入：1gb下载测试。</p>
+]]></content>
+    </entry>
+</feed>

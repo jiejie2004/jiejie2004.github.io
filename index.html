@@ -1,0 +1,379 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    Personal Notes
+</title>
+<link rel="shortcut icon" href="https://surfersnode.ml/favicon.ico?v=1579502588470">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://surfersnode.ml/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://surfersnode.ml/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://surfersnode.ml">
+                <img class="avatar" src="https://surfersnode.ml/images/avatar.png?v=1579502588470" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    Personal Notes
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://surfersnode.ml/post/about">
+                        欢迎访问surfersnode空间！
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-08-19</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            surfersnode资讯分享博客。
+点击进入：1gb下载测试。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://surfersnode.ml/post/about">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://surfersnode.ml/post/git-qing-kong-suo-you-commit-ji-lu-fang-fa">
+                        git 清空所有commit记录方法
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-09</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            说明：例如将代码提交到git仓库，将一些敏感信息提交，所以需要删除提交记录以彻底清除提交信息，以得到一个干净的仓库且代码不变
+1.Checkout
+git checkout –orphan latest_branch
+
+
+Add all the files
+git add -A
+
+
+Commit the changes
+git commit -am “commit message&amp;quot;
+
+
+Delete the branch
+git branch -D master
+
+
+5.Rename the current branch to master
+git branch -m master
+6.Finally, force update your repository
+git push -f origin master
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://surfersnode.ml/post/git-qing-kong-suo-you-commit-ji-lu-fang-fa">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://surfersnode.ml/post/git-che-xiao-yu-hui-gun">
+                        git撤销与回滚
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-01-09</time>
+                    
+                        <a href="https://surfersnode.ml/tag/linux" class="post-tag i-tag
+                            i-tag-banana">
+            #linux
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            git的撤销与回滚在平时使用中还是比较多的，比如说我们想将某个修改后的文件撤销到上一个版本，或者是想撤销某次多余的提交，都要用到git的撤销和回滚操作。撤销分两种情况，一个是commit之前，一个是commit之后，下面具体看下这两种情况。
+一.git commit之前
+    未添加到暂存区的撤销(没有git add)
+
+    添加进暂存区的撤销(git add后)
+
+复制代码
+$ git status
+On branch test_git
+Changes not staged for commit:     没有添加到暂存区
+(use &amp;quot;git add ...&amp;quot; to update what will be committed)
+(use &amp;quot;git checkout -- ...&amp;quot; to discard changes in working directory)
+　　　　modified: new_src/app/Http/Controllers/Frontend/KyHome/KyHomeUnitTrait.php
+　　　　modified: new_src/app/Http/Controllers/Frontend/KyHome/KyHomeWordFilterTrait.php
+复制代码
+可以通过
+git checkout -- filename来撤销修改
+git checkout -- new_src/app/Http/Controllers/Frontend/KyHome/KyHomeWordFilterTrait.php
+再次查看文件状态发现选择的文件已经成功被撤销了。
+复制代码
+$ git status
+On branch test_git
+Changes not staged for commit:
+(use &amp;quot;git add ...&amp;quot; to update what will be committed)
+(use &amp;quot;git checkout -- ...&amp;quot; to discard changes in working directory)
+　　　　modified: new_src/app/Http/Controllers/Frontend/KyHome/KyHomeUnitTrait.php
+　　　　
+复制代码
+如果想将多个文件一次性撤销可以用
+git checkout -- .
+上面是 未添加到暂存区的撤销
+下面是添加到暂存区的
+复制代码
+$ git status
+On branch test_git
+Changes not staged for commit:
+(use &amp;quot;git add ...&amp;quot; to update what will be committed)
+(use &amp;quot;git checkout -- ...&amp;quot; to discard changes in working directory)
+    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php
+    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php
+
+复制代码
+复制代码
+$ git add -A
+$ git status
+On branch test_git
+Changes to be committed:    已经添加暂存区了
+(use &amp;quot;git reset HEAD ...&amp;quot; to unstage)
+    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php
+    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php
+
+复制代码
+从暂存区撤销
+$ git reset HEAD new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php
+Unstaged changes after reset:
+M       new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php
+如果想一次性将所有暂存区文件撤销回来，还是上面的命令，不过不用加文件路径。
+$ git reset HEAD
+Unstaged changes after reset:
+M       new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php
+M       new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php
+二.git commit之后
+如果当commit提交后想撤销的话，这就需要revert命令。git revert 命令是撤销某次操作，而在此次操作之前和之后的提交记录都会保留。
+先修改了几个文件然后commit 再用git log查看提交记录。
+commit 2842c8065322085c31fb7b8207b6296047c4ea3
+Author: songguojun songgj@kingnet.sh
+Date:   Sat Apr 28 11:21:30 2018 +0800
+add content
+
+然后使用revert  后面跟上git提交的commitid
+git  revert 2842c8065322085c31fb7b8207b6296047c4ea3
+复制代码
+Revert &amp;quot;add content&amp;quot;
+This reverts commit 2842c8065ffe2085c31fb7b8207b6296047c4ea3.
+Please enter the commit message for your changes. Lines starting
+with &#39;#&#39; will be ignored, and an empty message aborts the commit.
+On branch test_git
+Changes to be committed:
+modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php
+modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php
+复制代码
+然后在推送到远端更新远程仓库代码，修改的文件就撤销回来了。注意的是revert奇数次生效，偶数次又回到之前的修改状态。比如一个文件内容是a，那么修改为ab，revert后文件变成了a，如果在revert后文件又还原成ab了。
+还有就是如果想回到之前某个版本，可以用reset命令，可以回退到某次提交，那该提交之后的提交都会回滚，不过这种覆盖是不可逆的，之前的提交记录都没有了。所以平时开发中尽量注意，避免使用reset。
+用法:
+git  reset --hard  commit_id
+–hard – 强制将缓存区和工作目录都同步到你指定的提交
+git  reset --hard fdeb212a5418cc8e31f32d63cf197550297468ec
+HEAD is now at fdeb212 增加mysql端口配置
+然后在提交到远端覆盖。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://surfersnode.ml/post/git-che-xiao-yu-hui-gun">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://surfersnode.ml/post/ubuntu-xiu-gai-shi-qu-he-geng-xin-shi-jian">
+                        Ubuntu修改时区和更新时间
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2019-11-25</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            1）先查看当前系统时间
+root@ubuntu:/# date -R
+2）运行tzselect
+选择亚洲 Asia，确认之后选择中国（China)，最后选择北京(Beijing)
+3）复制文件到/etc目录下
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+4）更新时间
+sudo ntpdate time.windows.com
+5）修改时间以后，修改硬件CMOS的时间
+sudo hwclock –systohc
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://surfersnode.ml/post/ubuntu-xiu-gai-shi-qu-he-geng-xin-shi-jian">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://surfersnode.ml/images/avatar.png?v=1579502588470)">
+        </div>
+        <h1 class="id_card-title">
+            Personal Notes
+        </h1>
+        <h2 class="id_card-description">
+            分享资讯 交流经验
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
+
+        </div>
+    </div>
+    
+
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://surfersnode.ml/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+</body>
+
+</html>

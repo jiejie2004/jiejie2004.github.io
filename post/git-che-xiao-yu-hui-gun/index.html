@@ -1,0 +1,296 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    git撤销与回滚 | Personal Notes
+</title>
+<link rel="shortcut icon" href="https://surfersnode.ml/favicon.ico?v=1579502588470">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://surfersnode.ml/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://surfersnode.ml/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+        
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://surfersnode.ml">
+                <img class="avatar" src="https://surfersnode.ml/images/avatar.png?v=1579502588470" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    Personal Notes
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            git撤销与回滚
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2020-01-09</time>
+                            
+                                <a href="https://surfersnode.ml/tag/linux" class="post-tag i-tag
+                            i-tag-other_2">
+                            #linux
+                        </a>
+                                
+                        </div>
+                        
+                                <div class="post-content">
+                                    <p>git的撤销与回滚在平时使用中还是比较多的，比如说我们想将某个修改后的文件撤销到上一个版本，或者是想撤销某次多余的提交，都要用到git的撤销和回滚操作。撤销分两种情况，一个是commit之前，一个是commit之后，下面具体看下这两种情况。</p>
+<p>一.git commit之前</p>
+<pre><code>    未添加到暂存区的撤销(没有git add)
+
+    添加进暂存区的撤销(git add后)
+</code></pre>
+<p>复制代码<br>
+$ git status<br>
+On branch test_git<br>
+Changes not staged for commit:     没有添加到暂存区<br>
+(use &quot;git add <file>...&quot; to update what will be committed)<br>
+(use &quot;git checkout -- <file>...&quot; to discard changes in working directory)<br>
+　　　　modified: new_src/app/Http/Controllers/Frontend/KyHome/KyHomeUnitTrait.php<br>
+　　　　modified: new_src/app/Http/Controllers/Frontend/KyHome/KyHomeWordFilterTrait.php</p>
+<p>复制代码<br>
+可以通过</p>
+<p>git checkout -- filename来撤销修改<br>
+git checkout -- new_src/app/Http/Controllers/Frontend/KyHome/KyHomeWordFilterTrait.php<br>
+再次查看文件状态发现选择的文件已经成功被撤销了。</p>
+<p>复制代码<br>
+$ git status<br>
+On branch test_git<br>
+Changes not staged for commit:<br>
+(use &quot;git add <file>...&quot; to update what will be committed)<br>
+(use &quot;git checkout -- <file>...&quot; to discard changes in working directory)<br>
+　　　　modified: new_src/app/Http/Controllers/Frontend/KyHome/KyHomeUnitTrait.php<br>
+　　　　<br>
+复制代码<br>
+如果想将多个文件一次性撤销可以用</p>
+<p>git checkout -- .<br>
+上面是 未添加到暂存区的撤销</p>
+<p>下面是添加到暂存区的</p>
+<p>复制代码<br>
+$ git status<br>
+On branch test_git<br>
+Changes not staged for commit:<br>
+(use &quot;git add <file>...&quot; to update what will be committed)<br>
+(use &quot;git checkout -- <file>...&quot; to discard changes in working directory)</p>
+<pre><code>    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php
+    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php
+</code></pre>
+<p>复制代码<br>
+复制代码<br>
+$ git add -A<br>
+$ git status<br>
+On branch test_git<br>
+Changes to be committed:    已经添加暂存区了<br>
+(use &quot;git reset HEAD <file>...&quot; to unstage)</p>
+<pre><code>    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php
+    modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php
+</code></pre>
+<p>复制代码<br>
+从暂存区撤销</p>
+<p>$ git reset HEAD new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php<br>
+Unstaged changes after reset:<br>
+M       new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php<br>
+如果想一次性将所有暂存区文件撤销回来，还是上面的命令，不过不用加文件路径。</p>
+<p>$ git reset HEAD<br>
+Unstaged changes after reset:</p>
+<p>M       new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php<br>
+M       new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php<br>
+二.git commit之后</p>
+<p>如果当commit提交后想撤销的话，这就需要revert命令。git revert 命令是撤销某次操作，而在此次操作之前和之后的提交记录都会保留。</p>
+<p>先修改了几个文件然后commit 再用git log查看提交记录。</p>
+<p>commit 2842c8065322085c31fb7b8207b6296047c4ea3<br>
+Author: songguojun <a href="mailto:songgj@kingnet.sh">songgj@kingnet.sh</a><br>
+Date:   Sat Apr 28 11:21:30 2018 +0800</p>
+<pre><code>add content
+</code></pre>
+<p>然后使用revert  后面跟上git提交的commitid</p>
+<p>git  revert 2842c8065322085c31fb7b8207b6296047c4ea3<br>
+复制代码<br>
+Revert &quot;add content&quot;</p>
+<p>This reverts commit 2842c8065ffe2085c31fb7b8207b6296047c4ea3.</p>
+<h1 id="please-enter-the-commit-message-for-your-changes-lines-starting">Please enter the commit message for your changes. Lines starting</h1>
+<h1 id="with-will-be-ignored-and-an-empty-message-aborts-the-commit">with '#' will be ignored, and an empty message aborts the commit.</h1>
+<h1 id="on-branch-test_git">On branch test_git</h1>
+<h1 id="changes-to-be-committed">Changes to be committed:</h1>
+<h1 id="modified-new_srcapphttpcontrollersfrontendkyhomekyhomeappphp">modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php</h1>
+<h1 id="modified-new_srcapphttpcontrollersfrontendkyhomekyhomecommentphp">modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php</h1>
+<p>复制代码<br>
+然后在推送到远端更新远程仓库代码，修改的文件就撤销回来了。注意的是revert奇数次生效，偶数次又回到之前的修改状态。比如一个文件内容是a，那么修改为ab，revert后文件变成了a，如果在revert后文件又还原成ab了。</p>
+<p>还有就是如果想回到之前某个版本，可以用reset命令，可以回退到某次提交，那该提交之后的提交都会回滚，不过这种覆盖是不可逆的，之前的提交记录都没有了。所以平时开发中尽量注意，避免使用reset。</p>
+<p>用法:</p>
+<p>git  reset --hard  commit_id<br>
+–hard – 强制将缓存区和工作目录都同步到你指定的提交<br>
+git  reset --hard fdeb212a5418cc8e31f32d63cf197550297468ec<br>
+HEAD is now at fdeb212 增加mysql端口配置<br>
+然后在提交到远端覆盖。</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://surfersnode.ml/post/ubuntu-xiu-gai-shi-qu-he-geng-xin-shi-jian">
+                                <h3 class="post-title">
+                                    Ubuntu修改时区和更新时间
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li><a href="#please-enter-the-commit-message-for-your-changes-lines-starting">Please enter the commit message for your changes. Lines starting</a></li>
+<li><a href="#with-will-be-ignored-and-an-empty-message-aborts-the-commit">with '#' will be ignored, and an empty message aborts the commit.</a></li>
+<li><a href="#on-branch-test_git">On branch test_git</a></li>
+<li><a href="#changes-to-be-committed">Changes to be committed:</a></li>
+<li><a href="#modified-new_srcapphttpcontrollersfrontendkyhomekyhomeappphp">modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeApp.php</a></li>
+<li><a href="#modified-new_srcapphttpcontrollersfrontendkyhomekyhomecommentphp">modified:   new_src/app/Http/Controllers/Frontend/KyHome/KyHomeComment.php</a></li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
+  <a class="rss" href="https://surfersnode.ml/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+    
+</body>
+
+</html>
